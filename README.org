@@ -11,3 +11,19 @@ Inspired by [[http://php.net/manual/ja/class.datetime.php#datetime.constants.typ
 (datetime 'atom)
 (datetime 'atom "2112-09-03 00:00:00" :timezone "UTC")
 #+END_SRC
+
+**** Format symbols
+
+| Symbol     | Example                           |
+|------------+-----------------------------------|
+| =atom=     | 2008-04-01T00:00:00+09:00         |
+| =atom-utc= | 2008-03-31T15:00:00Z              |
+| =cookie=   | Tuesday, 01-Apr-2008 00:00:00 JST |
+| =rfc-822=  | Tue, 01 Apr 08 00:00:00 +0900     |
+| =rfc-850=  | Tuesday, 01-Apr-08 00:00:00 JST   |
+| =rfc-1036= | Tue, 01 Apr 08 00:00:00 +0900     |
+| =rfc-1123= | Tue, 01 Apr 2008 00:00:00 +0900   |
+| =rfc-2822= | Tue, 01 Apr 2008 00:00:00 +0900   |
+| =rfc-3339= | 2008-04-01T00:00:00+09:00         |
+| =rss=      | Tue, 01 Apr 2008 00:00:00 +0900   |
+| =w3c=      | 2008-04-01T15:52:01+00:00         |
