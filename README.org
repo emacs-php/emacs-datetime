@@ -1,0 +1,13 @@
+* Emacs datetime
+Inspired by [[http://php.net/manual/ja/class.datetime.php#datetime.constants.types][PHP's Datetime class]].
+
+*No test* /yet/.
+
+** API
+*** =(datetime SYM-OR-FMT &optional TIME &rest OPTION)=
+
+#+BEGIN_SRC emacs-lisp
+(datetime "%Y-%m-%d")
+(datetime 'atom)
+(datetime 'atom "2112-09-03 00:00:00" :timezone "UTC")
+#+END_SRC
