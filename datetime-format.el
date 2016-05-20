@@ -1,4 +1,4 @@
-;;; datetime.el --- Datetime functions
+;;; datetime-format.el --- Datetime functions
 
 ;; Copyright (C) 2016 USAMI Kenta
 
@@ -33,9 +33,9 @@
 ;; (datetime 'atom 0) ;=> "1970-01-01 09:01:00+09:00"
 ;; (datetime 'atom 0 :timezone "UTC") ;=> "1970-01-01 00:01:00+00:00"
 ;; (datetime 'atom "2015-01-12 02:01:11") ;=> "2015-01-12 02:01:11+09:00"
-;; (datetime 'atom "2015-01-12 02:01:11" :timezone "Asia/Shanghai") ;=> "2015-01-12 01:01:11+08:00"
+;; (datetime 'atom "2015-01-12 02:01:11" :timezone "Europe/Moscow") ;=> "2015-01-12 01:01:11+03:00"
 ;; (datetime 'atom-utc "2015-01-12 02:01:11") ;=> "2015-01-11 17:01:11Z"
-;; (datetime 'atom nil :timezone "JST")
+;; (datetime 'atom nil :timezone "America/New_York") ;=> "2016-05-18 13:05:41-04:00"
 
 ;;; Code:
 ;;(require 'timezone)
@@ -156,6 +156,13 @@ See describe `(current-time)' function."
   (let* ((low (- (lsh 1 16) 1)) (high (lsh low 16)))
     (list (lsh (logand high int) -16) (logand low int) 0 0)))
 
+(defun datetime-convert-timestamp-dwim (time &optional timezone)
+  ""
+  (cond
+   ((integerp time) (datetime--int-to-timestamp time))
+   ((stringp  time) (datetime--parse-time-with-timezone time timezone))
+   (:else (error "Error time format"))))
+
 (defun datetime--format-time-with-timezone (fmt time timezone)
   "Use `FMT' to format the time `TIME' in `TIMEZONE'.
 
@@ -177,5 +184,5 @@ TIME is specified as (HIGH LOW USEC PSEC), as returned by
           (apply #'encode-time (parse-time-string time)))
       (setenv "TZ" real-time-zone))))
 
-(provide 'datetime)
-;;; datetime.el ends here
+(provide 'datetime-format)
+;;; datetime-format.el ends here
