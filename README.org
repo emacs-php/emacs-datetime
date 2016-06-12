@@ -4,12 +4,12 @@ Inspired by [[http://php.net/manual/ja/class.datetime.php#datetime.constants.typ
 *No test* /yet/.
 
 ** API
-*** =(datetime SYM-OR-FMT &optional TIME &rest OPTION)=
+*** =(datetime-format SYM-OR-FMT &optional TIME &rest OPTION)=
 
 #+BEGIN_SRC emacs-lisp
-(datetime "%Y-%m-%d")
-(datetime 'atom)
-(datetime 'atom "2112-09-03 00:00:00" :timezone "UTC")
+(datetime-format "%Y-%m-%d")
+(datetime-format 'atom)
+(datetime-format 'atom "2112-09-03 00:00:00" :timezone "UTC")
 #+END_SRC
 
 **** Format symbols

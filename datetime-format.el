@@ -28,104 +28,104 @@
 
 ;;; Commentary:
 
-;; (datetime 'atom) ;=> "2015-01-12 02:01:11+09:00"
-;; (datetime 'atom (current-time))  ;=> "2015-01-12 02:01:11+09:00"
-;; (datetime 'atom 0) ;=> "1970-01-01 09:01:00+09:00"
-;; (datetime 'atom 0 :timezone "UTC") ;=> "1970-01-01 00:01:00+00:00"
-;; (datetime 'atom "2015-01-12 02:01:11") ;=> "2015-01-12 02:01:11+09:00"
-;; (datetime 'atom "2015-01-12 02:01:11" :timezone "Europe/Moscow") ;=> "2015-01-12 01:01:11+03:00"
-;; (datetime 'atom-utc "2015-01-12 02:01:11") ;=> "2015-01-11 17:01:11Z"
-;; (datetime 'atom nil :timezone "America/New_York") ;=> "2016-05-18 13:05:41-04:00"
+;; (datetime-format 'atom) ;=> "2015-01-12T02:01:11+09:00"
+;; (datetime-format 'atom (current-time)) ;=> "2015-01-12T02:01:11+09:00"
+;; (datetime-format 'atom 0) ;=> "1970-01-01T09:00:00+09:00"
+;; (datetime-format 'atom 0 :timezone "UTC") ;=> "1970-01-01T00:00:00+00:00"
+;; (datetime-format 'atom "2015-01-12 02:01:11") ;=> "2015-01-12T02:01:11+09:00"
+;; (datetime-format 'atom "2015-01-12 02:01:11" :timezone "Europe/Moscow") ;=> "2015-01-12T01:01:11+03:00"
+;; (datetime-format 'atom-utc "2015-01-12 02:01:11") ;=> "2015-01-11T17:01:11Z"
+;; (datetime-format 'atom nil :timezone "America/New_York") ;=> "2016-05-18T13:05:41-04:00"
 
 ;;; Code:
 ;;(require 'timezone)
 
 (defconst datetime-format--fmt-atom
-  '(local . "%Y-%m-%d %H:%m:%S%:z")
+  '(local . "%Y-%m-%dT%H:%M:%S%:z")
   "ATOM date construct format (local time).
 
 RFC4287: The Atom Syndication Format \"3.3.  Date Constructs\"
-https://www.ietf.org/rfc/rfc4287")
+URL `https://www.ietf.org/rfc/rfc4287'")
 
 (defconst datetime-format--fmt-atom-utc
-  '(utc . "%Y-%m-%d %H:%m:%SZ")
+  '(utc . "%Y-%m-%dT%H:%M:%SZ")
   "ATOM date construct format (UTC).
 
 RFC4287: The Atom Syndication Format \"3.3.  Date Constructs\"
-https://www.ietf.org/rfc/rfc4287")
+URL `https://www.ietf.org/rfc/rfc4287'")
 
 (defconst datetime-format--fmt-cookie
-  '(local . "%A, %d-%b-%Y %H:%m:%S %Z")
+  '(local . "%A, %d-%b-%Y %H:%M:%S %Z")
   "Cookie date format.
 
 RFC6265: HTTP State Management Mechanism \"5.1.1.  Dates\"
-https://tools.ietf.org/html/rfc6265#section-5.1.1")
+URL `https://tools.ietf.org/html/rfc6265#section-5.1.1'")
 
 (defconst datetime-format--fmt-rfc-822
-  '(local . "%a, %d %b %y %H:%m:%S %z")
+  '(local . "%a, %d %b %y %H:%M:%S %z")
   "RFC 822 date-time format.
 
 RFC822: Standard for ARPA Internet Text Messages
 \"5. Date and Time Specification\"
-https://www.w3.org/Protocols/rfc822/#z28")
+URL `https://www.w3.org/Protocols/rfc822/#z28'")
 
 (defconst datetime-format--fmt-rfc-850
-  '(local . "%A, %d-%b-%y %H:%m:%S %Z")
+  '(local . "%A, %d-%b-%y %H:%M:%S %Z")
   "RFC 850 \"Date\" line format.
 
 RFC850: Standard for Interchange of USENET Messages \"2.1.4  Date\"
-https://www.ietf.org/rfc/rfc0850")
+URL `https://www.ietf.org/rfc/rfc0850'")
 
 (defconst datetime-format--fmt-rfc-1036
-  '(local . "%a, %d %b %y %H:%m:%S %z")
+  '(local . "%a, %d %b %y %H:%M:%S %z")
   "RFC 1036 \"Date\" line format.
 
 RFC1036 Standard for Interchange of USENET Messages \"2.1.2.  Date\"
-https://www.ietf.org/rfc/rfc1036")
+URL `https://www.ietf.org/rfc/rfc1036'")
 
 (defconst datetime-format--fmt-rfc-1123
-  '(local . "%A, %d %b %y %H:%m:%S %z")
+  '(local . "%a, %d %b %Y %H:%M:%S %z")
   "RFC 1123 Date and Time format.
 
 RFC1123: Requirements for Internet Hosts -- Application and Support
 \"5.2.14  RFC-822 Date and Time Specification\"
-https://www.ietf.org/rfc/rfc1123")
+URL `https://www.ietf.org/rfc/rfc1123'")
 
 (defconst datetime-format--fmt-rfc-2822
-  '(local . "%A, %d %b %y %H:%m:%S %z")
+  '(local . "%a, %d %b %Y %H:%M:%S %z")
   "RFC 2822 Date and Time format.
 
 RFC2822: Internet Message Format \"3.3. Date and Time Specification\"
-https://www.ietf.org/rfc/rfc2822.txt")
+URL `https://www.ietf.org/rfc/rfc2822.txt'")
 
 (defconst datetime-format--fmt-rfc-3339
-  '(local . "%Y-%m-%d %H:%m:%S%:z")
+  '(local . "%Y-%m-%dT%H:%M:%S%:z")
   "RFC 3339 Timestamp format.
 
 RFC3339: Date and Time on the Internet: Timestamps
-https://www.ietf.org/rfc/rfc3339.txt")
+URL `https://www.ietf.org/rfc/rfc3339.txt'")
 
 (defconst datetime-format--fmt-rss
-  '(local . "%A, %d %b %y %H:%m:%S %z")
+  '(local . "%a, %d %b %y %H:%M:%S %z")
   "RSS pubDate element format.
 
 Really Simple Syndication 2.0
-https://validator.w3.org/feed/docs/rss2.html")
+URL `https://validator.w3.org/feed/docs/rss2.html'")
 
 (defconst datetime-format--fmt-w3c
-  '(local . "%Y-%m-%d %H:%m:%S%:z")
+  '(local . "%Y-%m-%dT%H:%M:%S%:z")
   "W3C `Complete date plus hours, minutes and seconds' format.
 
 W3C Date and Time Formats
-https://www.w3.org/TR/NOTE-datetime")
+URL `https://www.w3.org/TR/NOTE-datetime'")
 
 
 ;;;###autoload
 (defun datetime-format (sym-or-fmt &optional time &rest option)
-  "Use `SYM-OR-FMT' to format the time `TIME' and `OPTION' plist.
+  "Use SYM-OR-FMT to format the time TIME and OPTION plist.
 
-`OPTION' plist expect `:timezone'.
-See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
+OPTION plist expect :timezone.
+See URL `https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'"
   (let ((timezone (plist-get option :timezone))
         is-utc format name)
     (cond
@@ -150,9 +150,9 @@ See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"
       (datetime-format--with-timezone format time timezone))))
 
 (defun datetime-format--int-to-timestamp (int)
-  "Convert `INT' to time stamp list.
+  "Convert INT to time stamp list.
 
-See describe `(current-time)' function."
+See describe `current-time' function."
   (let* ((low (- (lsh 1 16) 1)) (high (lsh low 16)))
     (list (lsh (logand high int) -16) (logand low int) 0 0)))
 
@@ -164,11 +164,11 @@ See describe `(current-time)' function."
    (:else (error "Error time format"))))
 
 (defun datetime-format--with-timezone (fmt time timezone)
-  "Use `FMT' to format the time `TIME' in `TIMEZONE'.
+  "Use FMT to format the time TIME in TIMEZONE.
 
 TIME is specified as (HIGH LOW USEC PSEC), as returned by
 `current-time' or `file-attributes'."
-  (let (real-time-zone (getenv "TZ"))
+  (let ((real-time-zone (getenv "TZ")))
     (unwind-protect
         (progn
           (setenv "TZ" timezone)
@@ -177,7 +177,7 @@ TIME is specified as (HIGH LOW USEC PSEC), as returned by
 
 (defun datetime-format--parse-time-with-timezone (time timezone)
   ""
-  (let (real-time-zone (getenv "TZ"))
+  (let ((real-time-zone (getenv "TZ")))
     (unwind-protect
         (progn
           (setenv "TZ" timezone)
