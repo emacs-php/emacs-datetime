@@ -6,6 +6,7 @@
 (keywords "datetime" "calendar")
 
 (package-file "datetime-format.el")
+(files "datetime-format.el")
 
 (script "test" "echo \"Error: no test specified\" && exit 1")
 
