@@ -48,6 +48,9 @@ This macro helps with expression expansion at compile time."
     `(prog1 (quote ,sequence)
        ,@(mapcar function sequence))))
 
+(ert-deftest datetime-format-test-env-tz ()
+  (should (string= datetime-format-original-tz "-9:30")))
+
 (ert-deftest datetime-format-test-format ()
   (with-environment-variables (("TZ" "-9:30")) ;; Australia/Darwin
     (datetime-format--map '(("2009-02-14T09:01:30+09:30" (datetime-format 'atom))

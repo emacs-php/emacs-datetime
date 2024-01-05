@@ -14,6 +14,8 @@ concurrency:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    env:
+      TZ: "-9:30"
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
