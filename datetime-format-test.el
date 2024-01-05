@@ -1,11 +1,11 @@
-;;; test-datetime.el --- Test for datetime.el
+;;; datetime-format-test.el --- Test for datetime-format  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016 USAMI Kenta
+;; Copyright (C) 2024  Friends of Emacs-PHP development
 
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 18 May 2016
 ;; Version: 0.0.1
-;; Package-Requires: ((test-simple "1.2"))
+;; Package-Requires: ((emacs "26.3"))
 ;; Keywords: datetime calendar
 ;; Homepage: https://github.com/zonuexe/emacs-datetime
 
@@ -28,20 +28,11 @@
 
 ;;; Commentary:
 
+;; Test codes for datetime-format.
+
 ;;; Code:
+(require 'ert)
+(require 'datetime-format)
 
-(let ((default-directory (concat (file-name-as-directory default-directory) ".cask")))
-  (add-to-list 'load-path default-directory)
-  (normal-top-level-add-subdirs-to-load-path))
-
-(require 'test-simple)
-(test-simple-start)
-
-(assert-t (load-file "./datetime.el")
-   "Can't load datetime.el - are you in the right directory?")
-
-
-
-(end-tests)
-
-;;; test-datetime.el ends here
+(provide 'datetime-format-test)
+;;; datetime-format-test.el ends here
