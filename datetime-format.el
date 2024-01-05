@@ -38,8 +38,6 @@
 ;; (datetime-format 'atom nil :timezone "America/New_York") ;=> "2016-05-18T13:05:41-04:00"
 
 ;;; Code:
-;;(require 'timezone)
-
 (defconst datetime-format--fmt-atom
   '(local . "%Y-%m-%dT%H:%M:%S%:z")
   "ATOM date construct format (local time).
@@ -153,8 +151,8 @@ See URL `https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'"
   "Convert INT to time stamp list.
 
 See describe `current-time' function."
-  (let* ((low (- (lsh 1 16) 1)) (high (lsh low 16)))
-    (list (lsh (logand high int) -16) (logand low int) 0 0)))
+  (let* ((low (- (ash 1 16) 1)) (high (ash low 16)))
+    (list (ash (logand high int) -16) (logand low int) 0 0)))
 
 (defun datetime-format-convert-timestamp-dwim (time &optional timezone)
   ""
