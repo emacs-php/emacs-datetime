@@ -53,7 +53,7 @@
 ;;;###autoload
 (defmacro timecop (freeze-time &rest body)
   "Freeze time at `FREEZE-TIME' and execute `BODY'."
-  (declare (indent 4))
+  (declare (indent 1))
   `(cl-letf (((symbol-function 'format-time-string)
               #'timecop--format-time-string))
      (let ((timecop--freezetime (datetime-format-convert-timestamp-dwim ,freeze-time)))
