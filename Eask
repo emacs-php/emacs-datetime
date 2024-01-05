@@ -2,8 +2,8 @@
          "0.0.1"
          "Datetime functions")
 
-(website-url "https://github.com/zonuexe/emacs-datetime")
-(keywords "datetime" "calendar")
+(website-url "https://github.com/emacs-php/emacs-datetime")
+(keywords "lisp" "datetime" "calendar")
 
 (package-file "datetime-format.el")
 (files "datetime-format.el")
