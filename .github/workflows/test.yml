@@ -51,4 +51,5 @@ jobs:
       run: |
         eask package
         eask install
+        eask test ert datetime-format-test.el
         eask compile
