@@ -1,4 +1,4 @@
-;;; timecop.el --- Freeze Time for testing
+;;; timecop.el --- Freeze Time for testing                -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2024  Friends of Emacs-PHP development
 

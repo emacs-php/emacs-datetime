@@ -1,4 +1,4 @@
-;;; datetime-format.el --- Datetime functions
+;;; datetime-format.el --- Datetime functions             -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2024  Friends of Emacs-PHP development
 
