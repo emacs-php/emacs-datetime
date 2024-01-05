@@ -6,7 +6,8 @@
 (keywords "lisp" "datetime" "calendar")
 
 (package-file "datetime-format.el")
-(files "datetime-format.el")
+(files "datetime-format.el"
+       "timecop.el")
 
 (script "test" "echo \"Error: no test specified\" && exit 1")
 
