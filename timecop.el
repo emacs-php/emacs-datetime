@@ -47,15 +47,23 @@
 
 (defalias 'timecop--real-fts (symbol-function 'format-time-string))
 (defun timecop--format-time-string (format-string &optional time universal)
-  "Wrapper function `(FORMAT-TIME-STRING FORMAT-STRING TIME UNIVERSAL)'."
+  "Wrapper function `(format-time-string FORMAT-STRING TIME UNIVERSAL)'."
   (timecop--real-fts format-string (or time timecop--freezetime) universal))
+
+(defun timecop--current-time ()
+  "Wrapper function of `current-time'."
+  timecop--freezetime)
+
+(current-time)
 
 ;;;###autoload
 (defmacro timecop (freeze-time &rest body)
   "Freeze time at `FREEZE-TIME' and execute `BODY'."
   (declare (indent 1))
   `(cl-letf (((symbol-function 'format-time-string)
-              #'timecop--format-time-string))
+              #'timecop--format-time-string)
+             ((symbol-function 'current-time)
+              #'timecop--current-time))
      (let ((timecop--freezetime (datetime-format-convert-timestamp-dwim ,freeze-time)))
        ,@body)))
 
