@@ -1,13 +1,13 @@
 ;;; timecop.el --- Freeze Time for testing
 
-;; Copyright (C) 2016 USAMI Kenta
+;; Copyright (C) 2024  Friends of Emacs-PHP development
 
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 19 May 2016
 ;; Version: 0.0.1
-;; Package-Requires: ((cl-lib "0.5") (datetime-format "0.0.1"))
-;; Keywords: datetime testing
-;; Homepage: https://github.com/zonuexe/emacs-datetime
+;; Package-Requires: ((emacs "26.3") (datetime-format "0.0.1"))
+;; Keywords: lisp, datetime, testing
+;; Homepage: https://github.com/emacs-php/emacs-datetime
 
 ;; This file is NOT part of GNU Emacs.
 

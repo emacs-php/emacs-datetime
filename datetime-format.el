@@ -1,13 +1,13 @@
 ;;; datetime-format.el --- Datetime functions
 
-;; Copyright (C) 2016 USAMI Kenta
+;; Copyright (C) 2024  Friends of Emacs-PHP development
 
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 16 May 2016
 ;; Version: 0.0.1
-;; Package-Requires: ()
-;; Keywords: datetime calendar
-;; Homepage: https://github.com/zonuexe/emacs-datetime
+;; Package-Requires: ((emacs "26.3"))
+;; Keywords: lisp, datetime, calendar
+;; Homepage: https://github.com/emacs-php/emacs-datetime
 
 ;; This file is NOT part of GNU Emacs.
 
