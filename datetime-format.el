@@ -5,7 +5,7 @@
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 16 May 2016
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "26.3"))
+;; Package-Requires: ((emacs "26.3") (compat "29"))
 ;; Keywords: lisp, datetime, calendar
 ;; Homepage: https://github.com/emacs-php/emacs-datetime
 
